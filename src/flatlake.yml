@@ -1,0 +1,34 @@
+collections:
+  - output_key: "biology"
+    inputs:
+      - path: "biology"
+  - output_key: "behavior"
+    inputs:
+      - path: "behavior"
+  - output_key: "conservation"
+    inputs:
+      - path: "conservation"
+  - output_key: "culture"
+    inputs:
+      - path: "culture"
+  - output_key: "ecology"
+    inputs:
+      - path: "ecology"
+  - output_key: "future"
+    inputs:
+      - path: "future"
+  - output_key: "general"
+    inputs:
+      - path: "general"
+  - output_key: "health"
+    inputs:
+      - path: "health"
+  - output_key: "reproduction"
+    inputs:
+      - path: "reproduction"
+  - output_key: "research"
+    inputs:
+      - path: "research"
+  - output_key: "subspecies"
+    inputs:
+      - path: "subspecies"

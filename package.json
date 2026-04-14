@@ -1,0 +1,18 @@
+{
+  "name": "tigers",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Tiger Knowledge Base - 50+ articles",
+  "type": "module",
+  "scripts": {
+    "build": "domstack --src src --dest public",
+    "dev": "domstack --src src --dest public --serve",
+    "search": "codebasesearch"
+  },
+  "devDependencies": {
+    "@domstack/static": "^11.0.3",
+    "codebasesearch": "^0.1.31"
+  },
+  "keywords": ["tiger", "conservation", "knowledge-base"],
+  "homepage": "https://github.com/AnEntrypoint/tigers"
+}

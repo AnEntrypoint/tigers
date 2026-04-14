@@ -1,0 +1,625 @@
+---
+- id: create-taxonomy
+  subject: Create general/taxonomy.md with tiger classification
+  status: pending
+  description: Details on tiger taxonomy and subspecies
+  effort: medium
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - File exists with accurate taxonomy info
+  edge_cases:
+    - Outdated subspecies info
+- id: create-evolution
+  subject: Create general/evolution.md with tiger evolutionary history
+  status: completed
+  description: Evolution of tigers from ancestors
+  effort: medium
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - Content covers evolutionary timeline
+  edge_cases:
+    - Missing fossil references
+- id: create-fossils
+  subject: Create general/fossils.md with fossil record
+  status: completed
+  description: Tiger fossils and paleontological findings
+  effort: medium
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - Details on known fossils
+  edge_cases:
+    - Incomplete record
+- id: create-physical-characteristics
+  subject: Create biology/physical_characteristics.md
+  status: pending
+  description: Physical appearance and features
+  effort: medium
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - Description of coat, size, stripes
+  edge_cases:
+    - Variations not covered
+- id: create-physiology
+  subject: Create biology/physiology.md with bodily functions
+  status: pending
+  description: Physiological processes
+  effort: medium
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - Digestion, circulation, etc.
+  edge_cases:
+    - Incomplete coverage
+- id: create-senses
+  subject: Create biology/senses.md with sensory abilities
+  status: pending
+  description: Vision, hearing, smell
+  effort: medium
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - Details on each sense
+  edge_cases:
+    - Night vision not emphasized
+- id: create-lifespan
+  subject: Create biology/lifespan.md
+  status: pending
+  description: Lifespan in wild and captivity
+  effort: small
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - Age ranges provided
+  edge_cases:
+    - No comparison
+- id: create-general-behavior
+  subject: Create behavior/general_behavior.md
+  status: pending
+  description: Overall behavior patterns
+  effort: medium
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - Solitary nature, activity
+  edge_cases:
+    - Missing territorial info
+- id: create-communication
+  subject: Create behavior/communication.md
+  status: pending
+  description: How tigers communicate
+  effort: medium
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - Vocalizations, markings
+  edge_cases:
+    - Incomplete list
+- id: create-hunting
+  subject: Create behavior/hunting.md with techniques
+  status: pending
+  description: Hunting strategies and prey
+  effort: medium
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - Ambush methods
+  edge_cases:
+    - Diet not linked
+- id: create-social-structure
+  subject: Create behavior/social_structure.md
+  status: pending
+  description: Social organization
+  effort: medium
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - Mother-cub relationships
+  edge_cases:
+    - Male-female interactions
+- id: create-habitat
+  subject: Create ecology/habitat.md
+  status: pending
+  description: Natural habitats
+  effort: medium
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - Forest types, adaptations
+  edge_cases:
+    - Range not covered
+- id: create-distribution
+  subject: Create ecology/distribution.md
+  status: pending
+  description: Geographic range
+  effort: medium
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - Current and historical
+  edge_cases:
+    - Population maps missing
+- id: create-diet
+  subject: Create ecology/diet.md
+  status: pending
+  description: Food and feeding habits
+  effort: medium
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - Prey types, frequency
+  edge_cases:
+    - Nutritional needs
+- id: create-migration
+  subject: Create ecology/migration.md
+  status: pending
+  description: Movement patterns
+  effort: small
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - Territorial ranges
+  edge_cases:
+    - Seasonal movements
+- id: create-mating
+  subject: Create reproduction/mating.md
+  status: pending
+  description: Mating behaviors
+  effort: medium
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - Courtship, season
+  edge_cases:
+    - No year-round info
+- id: create-gestation
+  subject: Create reproduction/gestation.md
+  status: pending
+  description: Pregnancy and birth
+  effort: medium
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - Duration, litter size
+  edge_cases:
+    - Cub development
+- id: create-cubs
+  subject: Create reproduction/cubs.md
+  status: pending
+  description: Cub rearing
+  effort: medium
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - Care, learning
+  edge_cases:
+    - Survival rates
+- id: create-subspecies-overview
+  subject: Create subspecies/overview.md
+  status: pending
+  description: Introduction to subspecies
+  effort: small
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - List of subspecies
+  edge_cases:
+    - Status not included
+- id: create-bengal-tiger
+  subject: Create subspecies/bengal_tiger.md
+  status: pending
+  description: Details on Bengal tiger
+  effort: medium
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - Habitat, population
+  edge_cases:
+    - Conservation status
+- id: create-siberian-tiger
+  subject: Create subspecies/siberian_tiger.md
+  status: pending
+  description: Details on Siberian tiger
+  effort: medium
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - Cold adaptations
+  edge_cases:
+    - Size info
+- id: create-sumatran-tiger
+  subject: Create subspecies/sumatran_tiger.md
+  status: pending
+  description: Details on Sumatran tiger
+  effort: medium
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - Island adaptations
+  edge_cases:
+    - Population low
+- id: create-indochinese-tiger
+  subject: Create subspecies/indochinese_tiger.md
+  status: pending
+  description: Details on Indochinese tiger
+  effort: medium
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - Range countries
+  edge_cases:
+    - Threats
+- id: create-malayan-tiger
+  subject: Create subspecies/malayan_tiger.md
+  status: pending
+  description: Details on Malayan tiger
+  effort: medium
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - Peninsula specific
+  edge_cases:
+    - Confused with Indochinese
+- id: create-south-china-tiger
+  subject: Create subspecies/south_china_tiger.md
+  status: pending
+  description: Details on South China tiger
+  effort: medium
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - Critically endangered
+  edge_cases:
+    - Possibly extinct
+- id: create-extinct-subspecies
+  subject: Create subspecies/extinct_subspecies.md
+  status: pending
+  description: Bali, Javan, Caspian tigers
+  effort: medium
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - Extinction causes
+  edge_cases:
+    - Historical ranges
+- id: create-conservation-status
+  subject: Create conservation/status.md
+  status: pending
+  description: Current conservation status
+  effort: medium
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - IUCN listings
+  edge_cases:
+    - Population numbers
+- id: create-population-estimates
+  subject: Create conservation/population_estimates.md
+  status: pending
+  description: Global and subspecies populations
+  effort: medium
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - Latest estimates
+  edge_cases:
+    - Historical decline
+- id: create-threats-habitat-loss
+  subject: Create conservation/threats_habitat_loss.md
+  status: pending
+  description: Habitat destruction impacts
+  effort: medium
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - Causes and effects
+  edge_cases:
+    - Solutions not included
+- id: create-threats-poaching
+  subject: Create conservation/threats_poaching.md
+  status: pending
+  description: Poaching for parts
+  effort: medium
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - Illegal trade details
+  edge_cases:
+    - Demand reduction
+- id: create-threats-conflict
+  subject: Create conservation/threats_conflict.md
+  status: pending
+  description: Human-tiger conflicts
+  effort: medium
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - Causes, prevention
+  edge_cases:
+    - Livestock loss
+- id: create-climate-change
+  subject: Create conservation/climate_change.md
+  status: pending
+  description: Climate impacts on tigers
+  effort: medium
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - Habitat changes
+  edge_cases:
+    - Future projections
+- id: create-efforts
+  subject: Create conservation/efforts.md
+  status: pending
+  description: General conservation efforts
+  effort: medium
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - Organizations involved
+  edge_cases:
+    - Success metrics
+- id: create-protected-areas
+  subject: Create conservation/protected_areas.md
+  status: pending
+  description: Tiger reserves and parks
+  effort: medium
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - Key locations
+  edge_cases:
+    - Connectivity
+- id: create-anti-poaching
+  subject: Create conservation/anti_poaching.md
+  status: pending
+  description: Anti-poaching measures
+  effort: medium
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - Patrols, tech
+  edge_cases:
+    - Effectiveness
+- id: create-reintroduction
+  subject: Create conservation/reintroduction.md
+  status: pending
+  description: Reintroduction programs
+  effort: medium
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - Examples
+  edge_cases:
+    - Challenges
+- id: create-captive-breeding
+  subject: Create conservation/captive_breeding.md
+  status: pending
+  description: Breeding in captivity
+  effort: medium
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - Programs, releases
+  edge_cases:
+    - Genetic issues
+- id: create-tourism
+  subject: Create conservation/tourism.md
+  status: pending
+  description: Tiger tourism impacts
+  effort: medium
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - Economic benefits
+  edge_cases:
+    - Disturbance risks
+- id: create-studies
+  subject: Create research/studies.md
+  status: pending
+  description: Scientific research on tigers
+  effort: medium
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - Key studies
+  edge_cases:
+    - Ongoing research
+- id: create-monitoring
+  subject: Create research/monitoring.md
+  status: pending
+  description: Population monitoring methods
+  effort: medium
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - Camera traps, etc.
+  edge_cases:
+    - Technology advances
+- id: create-tracking
+  subject: Create research/tracking.md
+  status: pending
+  description: Tracking individual tigers
+  effort: medium
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - Methods used
+  edge_cases:
+    - Data analysis
+- id: create-significance
+  subject: Create culture/significance.md
+  status: pending
+  description: Cultural importance
+  effort: medium
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - Symbolism
+  edge_cases:
+    - Modern uses
+- id: create-mythology
+  subject: Create culture/mythology.md
+  status: pending
+  description: Myths and legends
+  effort: medium
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - Stories from cultures
+  edge_cases:
+    - Global examples
+- id: create-art
+  subject: Create culture/art.md
+  status: pending
+  description: Tigers in art
+  effort: medium
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - Paintings, sculptures
+  edge_cases:
+    - Historical art
+- id: create-literature
+  subject: Create culture/literature.md
+  status: pending
+  description: Tigers in books and stories
+  effort: medium
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - Famous works
+  edge_cases:
+    - Children's literature
+- id: create-symbolism
+  subject: Create culture/symbolism.md
+  status: pending
+  description: Symbolic meanings
+  effort: medium
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - Cultural symbols
+  edge_cases:
+    - National symbols
+- id: create-sports
+  subject: Create culture/sports.md
+  status: pending
+  description: Tigers in sports
+  effort: medium
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - Team names, mascots
+  edge_cases:
+    - Controversies
+- id: create-products
+  subject: Create culture/products.md
+  status: pending
+  description: Tiger-related products
+  effort: medium
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - Legal vs illegal
+  edge_cases:
+    - Traditional medicine
+- id: create-diseases
+  subject: Create health/diseases.md
+  status: pending
+  description: Diseases affecting tigers
+  effort: medium
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - Common illnesses
+  edge_cases:
+    - Zoonotic diseases
+- id: create-parasites
+  subject: Create health/parasites.md
+  status: pending
+  description: Parasites in tigers
+  effort: medium
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - Types and impacts
+  edge_cases:
+    - Treatment
+- id: create-outlook
+  subject: Create future/outlook.md
+  status: pending
+  description: Future for tigers
+  effort: medium
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - Predictions
+  edge_cases:
+    - Optimism vs pessimism
+- id: create-success-stories
+  subject: Create future/success_stories.md
+  status: pending
+  description: Conservation successes
+  effort: medium
+  category: feature
+  blocking: []
+  blockedBy: []
+  acceptance:
+    - Examples of recovery
+  edge_cases:
+    - Ongoing efforts

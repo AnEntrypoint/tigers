@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tiger Knowledge Base</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font: 16px/1.5 system-ui, -apple-system, sans-serif; background: #fafafa; color: #333; }
+    .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+    h1 { font-size: 2.5rem; margin-bottom: 0.5rem; color: #1a1a1a; }
+    .subtitle { color: #666; margin-bottom: 2rem; }
+    
+    /* Search */
+    .search-box { position: sticky; top: 0; background: #fafafa; padding: 1rem 0; z-index: 100; }
+    .search-input { width: 100%; padding: 14px 20px; font-size: 1.1rem; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border-color 0.2s; }
+    .search-input:focus { border-color: #ff6b35; }
+    .search-results { margin-top: 1rem; color: #666; }
+    
+    /* Categories */
+    .categories { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 2rem; }
+    .cat-btn { padding: 6px 14px; background: #fff; border: 1px solid #ddd; border-radius: 20px; cursor: pointer; font-size: 0.9rem; transition: all 0.2s; }
+    .cat-btn:hover, .cat-btn.active { background: #ff6b35; color: #fff; border-color: #ff6b35; }
+    
+    /* Results */
+    .results { display: grid; gap: 16px; }
+    .result { background: #fff; padding: 20px; border-radius: 8px; border: 1px solid #eee; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
+    .result:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+    .result h3 { color: #ff6b35; margin-bottom: 0.5rem; }
+    .result .meta { font-size: 0.8rem; color: #999; margin-bottom: 0.5rem; }
+    .result .excerpt { color: #555; line-height: 1.6; }
+    .result .score { float: right; font-size: 0.75rem; color: #4caf50; }
+    
+    /* No results */
+    .no-results { text-align: center; padding: 40px; color: #999; }
+    
+    /* Loading */
+    .loading { text-align: center; padding: 40px; color: #999; display: none; }
+    
+    /* Footer */
+    footer { margin-top: 40px; padding: 20px; text-align: center; color: #999; font-size: 0.85rem; border-top: 1px solid #eee; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🐯 Tiger Knowledge Base</h1>
+    <p class="subtitle">50+ articles on tiger biology, conservation, and culture</p>
+    
+    <div class="search-box">
+      <input type="text" class="search-input" id="search" placeholder="Search tiger facts (e.g., 'diet hunting', 'subspecies status', 'conservation')..." autofocus>
+      <div class="search-results" id="results-count"></div>
+    </div>
+    
+    <div class="categories" id="categories">
+      <button class="cat-btn active" data-cat="all">All</button>
+      <button class="cat-btn" data-cat="biology">Biology</button>
+      <button class="cat-btn" data-cat="behavior">Behavior</button>
+      <button class="cat-btn" data-cat="conservation">Conservation</button>
+      <button class="cat-btn" data-cat="culture">Culture</button>
+      <button class="cat-btn" data-cat="ecology">Ecology</button>
+      <button class="cat-btn" data-cat="subspecies">Subspecies</button>
+    </div>
+    
+    <div class="results" id="results"></div>
+    <div class="loading" id="loading">🔍 Searching...</div>
+    <div class="no-results" id="no-results" style="display:none">No results found. Try different keywords.</div>
+  </div>
+  
+  <footer>
+    <p>Tiger Knowledge Base • 52 articles cross-referenced with codebasesearch</p>
+  </footer>
+
+  <script type="module">
+    // In-memory content store (built at CI time)
+    const articles = {
+biology: [
+{file: 'biology/anatomy.md', title: 'Tiger Anatomy', content: `Tigers possess a robust skeletal structure consisting of approximately 432 bones. The spine is highly flexible, comprising 7 cervical vertebrae in the neck, 13 thoracic vertebrae in the chest region, 7 lumbar vertebrae in the lower back, and 3 sacral vertebrae fused to form the pelvis. The skull is large and rounded, housing powerful jaws equipped with long canines (up to 3 inches) for gripping and killing prey. The hind legs are longer than the front legs, providing leverage for jumping distances up to 20 feet. Each front paw has five digits with retractable claws. The entire skeleton accounts for about 20% of the tiger's total body weight. Tigers have over 600 muscles that contribute to their strength, agility, and predatory capabilities. The heart is similar in structure to that of domestic carnivores with prominent trabeculae carneae.`},
+{file: 'biology/lifespan.md', title: 'Lifespan', content: `Tigers in the wild have an average lifespan of 10 to 15 years, though some subspecies may differ. In captivity, tigers can live 20 years or more with proper care. The maximum recorded lifespan in captivity is 26 years. Leading causes of death in the wild include human conflict, starvation, and injuries from prey. Cubs have a 50-70% mortality rate in their first year due to predation, disease, and starvation. Older tigers may lose their hunting efficacy and starve.`},
+{file: 'biology/physical_characteristics.md', title: 'Physical Characteristics', content: `Tigers (Panthera tigris) are the largest living big cats and apex predators, renowned for their powerful build and distinctive markings. Males typically measure 2.6 to 3.3 meters in total length and weigh between 160 to 300 kilograms. The Siberian (Amur) tiger is the largest subspecies. The tiger's coat provides excellent camouflage with base color ranging from pale yellow-orange to deep reddish-orange. Vertical black or dark brown stripes are unique to each individual, similar to human fingerprints. Tigers have over 100 stripes which break up their outline against vegetation for stealthy hunting. Variations include white tigers, black tigers, and golden tigers. The tail is approximately 1 meter long, used for balance during high-speed pursuits.`},
+{file: 'biology/physiology.md', title: 'Physiology', content: `Tigers are apex predators with highly adapted physiological systems supporting their carnivorous lifestyle. The digestive system is optimized for processing large amounts of meat and even bones with powerful stomach acids. Tigers can consume up to 40 kg of meat in one sitting and may fast for days. The circulatory system delivers oxygen through a four-chambered heart with robust cardiovascular capacity. Tigers have efficient lungs adapted for endurance and recovery after exertion. The brain enables complex hunting strategies, territory defense, and social cues. Hormones regulate metabolism, growth, reproduction, and stress responses through the pituitary, thyroid, adrenal, and gonads.`},
+{file: 'biology/senses.md', title: 'Sensory Abilities', content: `Tigers possess exceptional vision adapted for low-light conditions with a tapetum lucidum enhancing night vision up to 6 times that of humans. Hearing spans frequencies up to 60 kHz, enabling detection of prey movements. The sense of smell is well-developed for detecting prey and territory markers. Whiskers (vibrissae) around the muzzle detect air movement and vibrations. Binocular vision provides precise depth perception for ambush hunting.`
+],
+behavior: [
+{file: 'behavior/general_behavior.md', title: 'General Behavior', content: `Tigers are primarily nocturnal and crepuscular, hunting during cooler hours. Adults maintain exclusive territories with only brief associations for mating. Male territories typically cover 20-150 km² while female territories are 10-40 km². Tigers are excellent swimmers and regularly bathe to cool down. They rest during midday heat but may forage anytime depending on prey availability. Scent marking through urine spray and scratch marks communicates boundaries.`},
+{file: 'behavior/communication.md', title: 'Communication', content: `Tigers communicate through vocalizations including the powerful roar that carries up to 3 km. The chuff is a soft, friendly greeting sound. Grunts serve as mild threats while hisses and growls indicate aggression. Scent marking via urine spray on vegetation conveys identity and territory. Visual signals include ear positions and piloerection.`},
+{file: 'behavior/hunting.md', title: 'Hunting Techniques', content: `The primary hunting technique involves silent stalking through cover, then sudden burst from concealment. Tigers wait hours for ideal opportunity, approaching within 20 meters before pursuit. They may wait partially submerged in water for prey to approach. Only 10-20% of hunts succeed. Tigers deliver fatal bites to throat or back of neck. They prefer large ungulates: sambar deer, chital, barasingha, wild boar, and gaur.`},
+{file: 'behavior/social_structure.md', title: 'Social Structure', content: `Adult tigers are solitary, maintaining exclusive home ranges. Females raise cubs alone for 2-3 years. Cubs must disperse at 2-2.5 years to establish their own territory. Males may form coalitions with related individuals for better territory defense. High mortality occurs during the dispersal phase.`}
+],
+conservation: [
+{file: 'conservation/status.md', title: 'Conservation Status', content: `Panthera tigris is listed as Endangered (EN) on the IUCN Red List. Population trend is declining across all range countries. Major threats include habitat loss, poaching, and human-wildlife conflict. CITES Appendix I provides international trade protection.`},
+{file: 'conservation/population_estimates.md', title: 'Population Estimates', content: `Global wild tiger population is approximately 3,500-5,500 individuals (2024). Bengal tigers number around 3,500, primarily in India. Siberian tigers number approximately 500-600 in Russia and China. Sumatran tigers number around 80-150 remaining. Indochinese and Malayan tigers each number in the hundreds. South China tigers may be extinct in the wild. Population has increased from ~3,200 in 2010 to ~5,500 in 2024.`},
+{file: 'conservation/threats_habitat_loss.md', title: 'Habitat Loss', content: `Deforestation from industrial agriculture and timber extraction eliminates stalking habitat. Roads and human settlement fragment populations and block dispersal. Agricultural expansion replaces forest with human settlements. Mitigation includes wildlife corridors and community-managed forests.`},
+{file: 'conservation/threats_poaching.md', title: 'Poaching', content: `Tigers are killed for traditional medicine (bones for wine), decorative skins, and body parts. Black market prices rise as tigers become rarer. Enforcement challenges include low prosecution rates and cross-border crime. Countermeasures include anti-poaching patrols, sniffer dogs, and community watch programs.`},
+{file: 'conservation/threats_conflict.md', title: 'Human-Tiger Conflict', content: `Livestock predation causes retaliation killings. Prey depletion forces tigers toward domestic animals. Prevention includes livestock guard animals, improved enclosures, and compensation programs. Community-based conservation has shown 80%+ reduction in conflicts.`},
+{file: 'conservation/climate_change.md', title: 'Climate Change', content: `Climate change affects prey distributions and alters vegetation patterns. Sea level rise threatens coastal habitats like the Sunderbans. Tigers may shift ranges to higher altitudes or latitudes. Maintaining connectivity is critical for adaptation.`},
+{file: 'conservation/efforts.md', title: 'Conservation Efforts', content: `Key organizations include WWF, Panthera, and the Wildlife Conservation Society. Program types include anti-poaching, community-based conservation, captive breeding, and corridor protection. Funding comes from international donations, government budgets, and eco-tourism.`},
+{file: 'conservation/protected_areas.md', title: 'Protected Areas', content: `Major reserves include Ranthambore, Kanha, and Bandhavgarh in India. Russia's Sikhote-Alin protects Siberian tigers. Indonesia has Gunung Leuser and Way Kambas. Thailand has Thung Yala and Huai Kha Khaeng. Over 50 tiger reserves exist across the range.`},
+{file: 'conservation/anti_poaching.md', title: 'Anti-Poaching Measures', content: `Ranger teams conduct daily patrols with armed response capability. Technology includes camera traps and drones. Intelligence networks involve informants and cross-border cooperation. Community engagement provides local employment and alternative livelihoods.`},
+{file: 'conservation/reintroduction.md', title: 'Reintroduction', content: `Goals include establishing populations in former range and increasing genetic diversity. Challenges include finding suitable habitat and long-term funding. India and Russia have active reintroduction programs.`},
+{file: 'conservation/captive_breeding.md', title: 'Captive Breeding', content: `Global Tiger Recovery Program coordinates captive breeding. Studbooks maintain genetic records. Issues include genetic bottlenecks and inbreeding depression. Soft release approaches train tigers for survival.`},
+{file: 'conservation/tourism.md', title: 'Tiger Tourism', content: `Safari-based tourism generates significant revenue. Ranthambore in India is the most famous destination. Economic benefits include jobs and community compensation. Risks include disturbance if poorly managed.`}
+],
+culture: [
+{file: 'culture/significance.md', title: 'Cultural Significance', content: `Tigers symbolize power, strength, and royalty across Asian cultures. The tiger is the national animal of India and Bangladesh. Featured in Hindu mythology with goddess Durga. Modern usage includes brand logos and sports teams.`},
+{file: 'culture/mythology.md', title: 'Tiger Mythology', content: `Hindu mythology features Durga riding a tiger as a symbol of divine power. The tiger is one of 12 animals in the Chinese zodiac. Many indigenous cultures have tiger legends and deification. Some folklore associates demons with tiger form.`},
+{file: 'culture/art.md', title: 'Tigers in Art', content: `Traditional art includes Chinese scroll paintings and Indian miniatures. Tibetan thanka art features tigers. Modern usage includes the Louis Vuitton logo and conservation art. Wildlife photography documents tigers.`},
+{file: 'culture/literature.md', title: 'Tigers in Literature', content: `William Blake's poem "The Tyger" is a classic. Rudyard Kipling's Jungle Book features Shere Khan. Eye of the Tiger by Survivor is a famous song. Children's books include "The Tiger Who Came to Tea."`},
+{file: 'culture/symbolism.md', title: 'Cultural Symbolism', content: `India and Bangladesh have the tiger as national animal. Business brands like Tiger Brands use tiger imagery. Positive meanings include strength, courage, and royalty. Negative associations include danger and chaos.`},
+{file: 'culture/sports.md', title: 'Tigers in Sports', content: `Clemson Tigers and Auburn Tigers are US college teams. Sunderland A.F.C. uses a tiger mascot. Tokyo Yakult Swallows are a Japanese baseball team. Some mascots have faced cultural appropriation controversy.`},
+{file: 'culture/products.md', title: 'Tiger Products', content: `Legal products include tiger-shaped souvenirs and conservation merchandise. Illegal products include tiger bone wine and skins. Counterfeit products misrepresent tiger parts. Traditional medicine claims are often misleading.`}
+],
+ecology: [
+{file: 'ecology/habitat.md', title: 'Habitat', content: `Primary habitats include tropical forests, temperate forests, savanna, mangroves, and montane regions. Each subspecies is adapted to local conditions: Siberian=t cold tolerant, Sumatran=forest agile, Bengal=heat tolerant. Water source is required. Dense cover enables stalking.`},
+{file: 'ecology/distribution.md', title: 'Geographic Distribution', content: `Historical range spanned Turkey to Russian Far East, Indonesia to Central Asia. Current range is highly fragmented across India, Nepal, Russia, Indonesia, and Southeast Asia. Range countries include India, Nepal, Bhutan, Bangladesh, Russia, China, Thailand, Laos, Vietnam, Cambodia, Malaysia, and Indonesia.`},
+{file: 'ecology/diet.md', title: 'Diet', content: `Primary prey includes sambar deer, chital, barasingha, wild boar, and gaur. Secondary prey includes monkeys, porcupines, hares, birds, and fish. Tigers consume 4-7 kg per meal, up to 20 kg in one sitting. They prefer high-protein, high-fat meat.`},
+{file: 'ecology/migration.md', title: 'Movement Patterns', content: `Adults maintain year-round territories. Subadults disperse to establish new ranges. Siberian tigers move south in winter toward prey. Male ranges are 20-150 km²; female ranges are 10-40 km². Sizes correlate with prey density.`}
+],
+future: [
+{file: 'future/outlook.md', title: 'Future Outlook', content: `Best case: populations stabilize with intensive conservation. Worst case: further extinctions including South China tiger. Most likely: gradual stabilization with some local extinctions. Key uncertainties include climate change, poaching trends, and political will.`},
+{file: 'future/success_stories.md', title: 'Success Stories', content: `Bengal tiger populations have recovered in India's protected areas. Siberian tiger populations stabilized in Russia since the 1990s. Global population increased from ~3,000 in 2010 to ~5,500 in 2024. Success requires political will, community involvement, and adequate funding.`}
+],
+general: [
+{file: 'general/fossils.md', title: 'Tiger Fossils', content: `The fossil record of tigers provides insights into their evolutionary history. Tigers evolved in Asia and spread across the continent. Fossil dates range from hundreds of thousands of years ago. ThePanthera genus dates to approximately 2-3 million years ago.`},
+{file: 'general/taxonomy.md', title: 'Tiger Taxonomy', content: `Kingdom: Animalia, Phylum: Chordata, Class: Mammalia, Order: Carnivora, Family: Felidae, Genus: Panthera, Species: Panthera tigris. Nine subspecies proposed: six living (Bengal, Siberian, Sumatran, Indochinese, Malayan, South China) and three extinct (Bali, Javan, Caspian). Recent genetic studies support the validity of all nine subspecies.`}
+],
+health: [
+{file: 'health/diseases.md', title: 'Diseases', content: `Canine distemper affects big cats with outbreaks in some populations. Feline leukemia virus and immunodeficiency virus are monitored. Other diseases include parvovirus and coronaviruses. Disease monitoring protects wild populations.`},
+{file: 'health/parasites.md', title: 'Parasites', content: `Internal parasites include tapeworms, roundworms, and flukes. External parasites include ticks, fleas, and mites. Sarcoptic mange is a skin condition. Treatment includes deworming programs in captivity.`}
+],
+reproduction: [
+{file: 'reproduction/mating.md', title: 'Mating Behavior', content: `Year-round mating in tropical regions; winter mating in temperate areas. Females in estrus advertise through vocalizations and scent. Multiple matings occur over 4-6 days. No pair bond forms; male departs after mating. Females cycle every 3-9 weeks if not pregnant.`},
+{file: 'reproduction/gestation.md', title: 'Gestation', content: `Gestation lasts 93-112 days (average 103 days). Litter size is 2-4 cubs typically. Cubs are born blind, weighing 780-1,600 g. Eyes open at 6-14 days. Den sites include caves and dense vegetation.`},
+{file: 'reproduction/cubs.md', title: 'Cub Rearing', content: `Cubs emerge from den at 6 weeks. Weaning occurs at 3-6 months. Hunting lessons begin at 6 months. First-year mortality is 50-70%. Dispersal occurs at 2-2.5 years. Cubs learn through play and observation.`}
+],
+research: [
+{file: 'research/studies.md', title: 'Scientific Research', content: `Genome sequencing studies in 2018, 2021, and 2023 clarified subspecies relationships. Camera trap surveys since 2006 estimate populations. Key research areas include genetics, population dynamics, and movement ecology.`},
+{file: 'research/monitoring.md', title: 'Population Monitoring', content: `Methods include camera trap surveys with individual identification. DNA analysis from hair and scat samples. GPS collar tracking. Comprehensive surveys occur every 4-6 years. Machine learning automates species identification.`},
+{file: 'research/tracking.md', title: 'Tracking Individual Tigers', content: `GPS collars provide satellite uploads. Camera trap identification uses unique stripe patterns. Microchip implants provide permanent ID. DNA identification from hair and scat. Data reveals movement patterns and territory boundaries.`}
+],
+subspecies: [
+{file: 'subspecies/overview.md', title: 'Subspecies Overview', content: `Six living subspecies: Bengal (~3,500), Siberian (~500), Sumatran (~400), Indochinese (~350), Malayan (~250), South China (possibly extinct). Three extinct: Bali, Javan, Caspian. All living subspecies are endangered or critically endangered.`},
+{file: 'subspecies/bengal_tiger.md', title: 'Bengal Tiger', content: `Panthera tigris tigris. Most numerous subspecies at ~3,500 individuals. Found in India, Nepal, Bangladesh, Bhutan. Males weigh 180-260 kg. Orange coat with narrow stripes. Stable or increasing in protected areas.`},
+{file: 'subspecies/siberian_tiger.md', title: 'Siberian Tiger', content: `Panthera tigris altaica. Largest subspecies at ~500-600 individuals. Found in Russia's Sikhote-Alin and China. Males up to 320 kg. Pale orange with thick winter fur. Cold-adapted with temperatures to -40°C.`},
+{file: 'subspecies/sumatran_tiger.md', title: 'Sumatran Tiger', content: `Panthera tigris sumatrae. Smallest living subspecies at ~80-150 individuals. Endemic to Sumatra, Indonesia. Males weigh 100-140 kg. Darkest coat with heavy stripes. Critically endangered.`},
+{file: 'subspecies/indochinese_tiger.md', title: 'Indochinese Tiger', content: `Panthera tigris corbetti. Named after Jim Corbett. ~350 individuals across Thailand, Laos, Vietnam, Cambodia, Myanmar, China. Males weigh 150-195 kg. Darker orange than Bengal. Fragmented population.`},
+{file: 'subspecies/malayan_tiger.md', title: 'Malayan Tiger', content: `Panthera tigris jacksoni. Named after Peter Jackson. ~250 individuals in Peninsula Malaysia and southern Thailand. Males weigh 120-190 kg. Endemic to Malay Peninsula. Recognized in 2004.`},
+{file: 'subspecies/south_china_tiger.md', title: 'South China Tiger', content: `Panthera tigris amoyensis. Possibly extinct in wild. ~100 individuals in Chinese zoos. Males weigh 130-175 kg. Origin of all white tigers in captivity. Reintroduction programs planned.`},
+{file: 'subspecies/extinct_subspecies.md', title: 'Extinct Subspecies', content: `Bali tiger (P. t. balica) extinct ~1930s. Javan tiger (P. t. sondaica) extinct ~1980s. Caspian tiger (P. t. virgata) extinct ~1970s. Causes: hunting, habitat loss, prey depletion, human conflict.`}
+]};
+
+    // Build index
+    let allArticles = [];
+    for (const [cat, docs] of Object.entries(articles)) {
+      for (const doc of docs) {
+        allArticles.push({ category: cat, ...doc });
+      }
+    }
+    console.log('Loaded', allArticles.length, 'articles');
+
+    // Simple search function (client-side, no embeddings)
+    function search(query, category = 'all') {
+      query = query.toLowerCase().trim();
+      if (!query) return [];
+      
+      const terms = query.split(/\s+/).filter(t => t.length > 2);
+      
+      return allArticles
+        .filter(a => category === 'all' || a.category === category)
+        .map(a => {
+          const text = (a.title + ' ' + a.content).toLowerCase();
+          let score = 0;
+          for (const term of terms) {
+            if (text.includes(term)) score += term.length;
+          }
+          return { ...a, score };
+        })
+        .filter(a => a.score > 0)
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 20);
+    }
+
+    // DOM
+    const searchInput = document.getElementById('search');
+    const resultsDiv = document.getElementById('results');
+    const resultsCount = document.getElementById('results-count');
+    const loadingDiv = document.getElementById('loading');
+    const noResultsDiv = document.getElementById('no-results');
+    const catButtons = document.querySelectorAll('.cat-btn');
+    let activeCategory = 'all';
+
+    // Category filter
+    catButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        catButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeCategory = btn.dataset.cat;
+        performSearch();
+      });
+    });
+
+    function performSearch() {
+      const query = searchInput.value;
+      const results = search(query, activeCategory);
+      
+      if (results.length === 0) {
+        resultsDiv.style.display = 'none';
+        noResultsDiv.style.display = query ? 'block' : 'none';
+        resultsCount.textContent = query ? 'No results found' : '';
+        return;
+      }
+      
+      noResultsDiv.style.display = 'none';
+      resultsDiv.style.display = 'grid';
+      resultsCount.textContent = `Found ${results.length} result${results.length !== 1 ? 's' : ''}`;
+      
+      resultsDiv.innerHTML = results.map(r => `
+        <div class="result" data-file="${r.file}">
+          <span class="score">${Math.min(100, r.score * 2)}% match</span>
+          <h3>${r.title}</h3>
+          <div class="meta">${r.category} / ${r.file}</div>
+          <div class="excerpt">${r.content.substring(0, 200)}...</div>
+        </div>
+      `).join('');
+    }
+
+    // Search handler with debounce
+    let debounceTimer;
+    searchInput.addEventListener('input', () => {
+      clearTimeout(debounceTimer);
+      loadingDiv.style.display = 'block';
+      debounceTimer = setTimeout(() => {
+        loadingDiv.style.display = 'none';
+        performSearch();
+      }, 150);
+    });
+
+    // Initial state
+    performSearch();
+  </script>
+</body>
+</html>
