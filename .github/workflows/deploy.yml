@@ -3,12 +3,12 @@ name: Build and Deploy
 on:
   push:
     branches: [main]
-  pull_request:
-    branches: [main]
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
       
@@ -20,28 +20,9 @@ jobs:
       - name: Install dependencies
         run: npm install
         
-      - name: Build with domstack
+      - name: Build
         run: npm run build
         
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: public
-          path: public/
-          
-  deploy:
-    needs: build
-    if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - name: Download artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: public
-          path: public
-          
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
