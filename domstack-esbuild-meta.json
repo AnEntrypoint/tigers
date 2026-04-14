@@ -1,0 +1,121 @@
+{
+ "inputs": {
+  "node_modules/mine.css/dist/mine.css": {
+   "bytes": 14444,
+   "imports": [
+    {
+     "path": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23777'><path d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'/></svg>",
+     "kind": "url-token",
+     "external": true
+    },
+    {
+     "path": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23777'><path d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'/></svg>",
+     "kind": "url-token",
+     "external": true
+    }
+   ]
+  },
+  "node_modules/mine.css/dist/layout.css": {
+   "bytes": 641,
+   "imports": []
+  },
+  "node_modules/highlight.js/styles/github-dark-dimmed.css": {
+   "bytes": 2113,
+   "imports": []
+  },
+  "node_modules/@domstack/static/lib/defaults/default.style.css": {
+   "bytes": 124,
+   "imports": [
+    {
+     "path": "node_modules/mine.css/dist/mine.css",
+     "kind": "import-rule",
+     "original": "mine.css/dist/mine.css"
+    },
+    {
+     "path": "node_modules/mine.css/dist/layout.css",
+     "kind": "import-rule",
+     "original": "mine.css/dist/layout.css"
+    },
+    {
+     "path": "node_modules/highlight.js/styles/github-dark-dimmed.css",
+     "kind": "import-rule",
+     "original": "highlight.js/styles/github-dark-dimmed.css"
+    }
+   ]
+  },
+  "node_modules/mine.css/dist/theme-switcher.js": {
+   "bytes": 2620,
+   "imports": [],
+   "format": "esm"
+  },
+  "node_modules/@domstack/static/lib/defaults/default.client.js": {
+   "bytes": 112,
+   "imports": [
+    {
+     "path": "node_modules/mine.css/dist/theme-switcher.js",
+     "kind": "import-statement",
+     "original": "mine.css"
+    }
+   ],
+   "format": "esm"
+  }
+ },
+ "outputs": {
+  "public/domstack-defaults/default.client.js-NCEX6O44.js.map": {
+   "imports": [],
+   "exports": [],
+   "inputs": {},
+   "bytes": 4335
+  },
+  "public/domstack-defaults/default.client.js-NCEX6O44.js": {
+   "imports": [],
+   "exports": [],
+   "entryPoint": "node_modules/@domstack/static/lib/defaults/default.client.js",
+   "inputs": {
+    "node_modules/mine.css/dist/theme-switcher.js": {
+     "bytesInOutput": 2063
+    },
+    "node_modules/@domstack/static/lib/defaults/default.client.js": {
+     "bytesInOutput": 34
+    }
+   },
+   "bytes": 2265
+  },
+  "public/domstack-defaults/default.style.css-6XIILRQS.css.map": {
+   "imports": [],
+   "exports": [],
+   "inputs": {},
+   "bytes": 26664
+  },
+  "public/domstack-defaults/default.style.css-6XIILRQS.css": {
+   "imports": [
+    {
+     "path": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23777'><path d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'/></svg>",
+     "kind": "url-token",
+     "external": true
+    },
+    {
+     "path": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23777'><path d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'/></svg>",
+     "kind": "url-token",
+     "external": true
+    }
+   ],
+   "entryPoint": "node_modules/@domstack/static/lib/defaults/default.style.css",
+   "inputs": {
+    "node_modules/mine.css/dist/mine.css": {
+     "bytesInOutput": 11548
+    },
+    "node_modules/mine.css/dist/layout.css": {
+     "bytesInOutput": 540
+    },
+    "node_modules/highlight.js/styles/github-dark-dimmed.css": {
+     "bytesInOutput": 1355
+    },
+    "node_modules/@domstack/static/lib/defaults/default.style.css": {
+     "bytesInOutput": 0
+    }
+   },
+   "bytes": 14007
+  }
+ }
+}
